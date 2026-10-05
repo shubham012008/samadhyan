@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samadhyan: Safety, Voice, Solutions</title>
+<meta name="description" content="Samadhyan is an AI-powered civic complaint and participation platform.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#stage">Skip to content</a>
+
+<header class="top">
+  <button class="brand" type="button" data-go="home" aria-label="Samadhyan home">
+    <img src="logo.png" alt="" width="34" height="38"><span>Samadhyan</span>
+  </button>
+  <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+  <div class="top-right">
+    <button class="btn btn-small" id="loginBtn" type="button" aria-haspopup="true">Login / Register</button>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="usermenu" id="userMenu" hidden>
+    <p id="umName"></p>
+    <p>Participations <b id="cntJoin">0</b></p>
+    <p>Complaints <b id="cntComp">0</b></p>
+    <button type="button" id="logoutBtn">Logout</button>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+
+  <!-- HOME / LANDING -->
+  <section class="view" id="v-home" data-title="Home" aria-label="Home">
+    <div class="wrap center">
+      <img class="hero-logo" src="logo.png" alt="Samadhyan logo: hands holding a flame" width="120" height="132">
+      <h1>Samadhyan</h1>
+      <p class="tag">Safety, Voice, Solutions</p>
+      <p class="lead">Report a local issue with proof. We write and send the mail. You stay informed and involved.</p>
+      <div class="actions">
+        <button class="btn" type="button" data-go="problem">Start the tour</button>
+        <button class="btn btn-ghost" type="button" id="tryBtn">Try a complaint</button>
+      </div>
+      <ul class="auth" aria-label="Authorities on Samadhyan">
+        <li><span class="slot">Logo</span><div><b>Municipal Corporation</b><small>Waste, roads, drains</small></div></li>
+        <li><span class="slot">Logo</span><div><b>Water Board</b><small>Supply and leaks</small></div></li>
+        <li><span class="slot">Logo</span><div><b>Pollution Control Board</b><small>Air, water, noise</small></div></li>
+        <li><span class="slot">Logo</span><div><b>Police Helpline</b><small>Safety concerns</small></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="view" id="v-problem" data-title="Problem" aria-label="The problem">
+    <div class="wrap two">
+      <div>
+        <h2>The problem</h2>
+        <ul class="points">
+          <li>Filing a complaint takes forms, visits and typing</li>
+          <li>Proof such as photos, place and time is often missing</li>
+          <li>Mails to authorities are written and sent by hand</li>
+          <li>Rallies, protests and events do not reach people</li>
+          <li>Help and updates are scattered across many places</li>
+        </ul>
+      </div>
+      <div class="gap" aria-label="Citizen cannot reach authority">
+        <span class="node n-blue">Citizen</span>
+        <span class="cut" aria-hidden="true"><i></i><b>×</b><i></i></span>
+        <span class="node n-green">Authority</span>
+        <p>No simple channel</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="view" id="v-solution" data-title="Solution" aria-label="Our solution">
+    <div class="wrap two">
+      <div>
+        <h2>Our solution: the Samadhyan site</h2>
+        <ul class="points">
+          <li>One website for complaints and civic participation</li>
+          <li>Report an issue with photos, text or voice</li>
+          <li>AI writes the mail and sends it to the right authority</li>
+          <li>Join rallies, protests and events</li>
+          <li>AI bot answers your questions</li>
+        </ul>
+      </div>
+      <div class="flow" aria-label="Citizen to Samadhyan to Authorities">
+        <div class="f-box f-a">Citizen</div><i class="f-arrow" aria-hidden="true"></i>
+        <div class="f-box f-core"><b>Samadhyan</b><span>AI engine and AI bot</span></div><i class="f-arrow" aria-hidden="true"></i>
+        <div class="f-box f-b">Authorities</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="view" id="v-features" data-title="Features" aria-label="What our site provides">
+    <div class="wrap">
+      <h2>What our site provides</h2>
+      <p class="hint">Select a feature to try it.</p>
+      <div class="feat">
+        <div class="tiles" id="tiles" role="tablist" aria-label="Features"></div>
+        <div class="pane" id="pane" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPLAINTS -->
+  <section class="view" id="v-complaints" data-title="Complaints" aria-label="File a complaint">
+    <div class="wrap">
+      <div class="vhead"><h2>File a complaint</h2><span class="badge" data-db></span></div>
+      <div class="cgrid">
+        <form id="cForm" class="cform" novalidate>
+          <label for="cSub">Subject</label>
+          <input id="cSub" type="text" placeholder="Example: Garbage overflowing near the market" autocomplete="off">
+          <label for="cDesc">What happened</label>
+          <div class="twrap"><textarea id="cDesc" rows="3" placeholder="Type, or press Speak"></textarea>
+            <button type="button" class="mic" id="micBtn" aria-pressed="false"><span data-icon="FaMicrophone"></span>Speak</button></div>
+          <div class="f2"><div><label for="cName">Your name</label><input id="cName" type="text" autocomplete="name"></div>
+            <div><label for="cPhone">Phone (optional)</label><input id="cPhone" type="tel" autocomplete="tel"></div></div>
+          <div class="f2"><div><label for="cArea">Area or address</label><input id="cArea" type="text" placeholder="Sector, city" autocomplete="off"></div>
+            <div class="auto"><span class="k">GPS location</span><output id="cLoc">Not added</output><button type="button" class="lnk" id="cLocBtn">Add current location</button></div></div>
+          <div class="f2"><div><label for="cPhoto">Photos</label><input id="cPhoto" type="file" accept="image/*" multiple></div>
+            <div class="auto"><span class="k">Date and time</span><output id="cTime"></output></div></div>
+          <p class="err" id="cErr" role="alert"></p>
+          <button class="btn" type="submit">Submit and open Gmail</button>
+        </form>
+        <div class="cright">
+          <div class="seg2" role="tablist">
+            <button type="button" id="rtResult" class="on" role="tab" aria-selected="true">AI result</button>
+            <button type="button" id="rtFiled" role="tab" aria-selected="false">Filed complaints <b id="fCount">0</b></button>
+          </div>
+          <div class="aipanel" id="aiPanel" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTICIPATE -->
+  <section class="view" id="v-participate" data-title="Participate" aria-label="Participate">
+    <div class="wrap">
+      <div class="vhead"><h2>Participate</h2><span class="badge" data-db></span></div>
+      <div class="pgrid">
+        <ul class="events" id="events" aria-label="Rallies, protests and events"></ul>
+        <div class="pside">
+          <div class="bignum"><b id="totJoin">0</b><span>participations across <i id="totEv">0</i> events</span></div>
+          <form id="eForm" novalidate>
+            <h3>Create an event</h3>
+            <label for="eTitle">Title</label><input id="eTitle" type="text" autocomplete="off">
+            <div class="f2"><div><label for="eType">Type</label><select id="eType"><option>Rally</option><option>Protest</option><option>Event</option></select></div>
+              <div><label for="eWhen">Date and time</label><input id="eWhen" type="datetime-local"></div></div>
+            <label for="ePlace">Place</label><input id="ePlace" type="text" autocomplete="off">
+            <p class="err" id="eErr" role="alert"></p>
+            <button class="btn btn-small" type="submit">Create event</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="view" id="v-impact" data-title="Impact" aria-label="Sustainable development">
+    <div class="wrap">
+      <h2>Contribution to sustainable development</h2>
+      <ul class="sdgs">
+        <li class="s16"><b>SDG 16</b><div><strong>Peace, Justice and Strong Institutions</strong><span>Transparent, responsive institutions with a complaint trail</span></div></li>
+        <li class="s11"><b>SDG 11</b><div><strong>Sustainable Cities and Communities</strong><span>Quick reporting of local issues and public participation</span></div></li>
+        <li class="s9"><b>SDG 9</b><div><strong>Industry, Innovation and Infrastructure</strong><span>A digital public service built on AI and web technology</span></div></li>
+        <li class="s10"><b>SDG 10</b><div><strong>Reduced Inequalities</strong><span>Voice input and a simple interface for people who find typing hard</span></div></li>
+      </ul>
+      <div class="pillars">
+        <div><b>Social</b><span>Inclusive public voice</span></div>
+        <div><b>Environmental</b><span>Faster reporting of waste, leaks and pollution; paperless</span></div>
+        <div><b>Economic</b><span>Saves time and travel</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="view" id="v-compare" data-title="Compare" aria-label="How we are different">
+    <div class="wrap">
+      <h2>How we are different</h2>
+      <div class="tw">
+        <table>
+          <caption>Comparison with typical present sites, apps and authority portals.</caption>
+          <thead><tr><th scope="col"><span class="sr">Area</span></th><th scope="col">Present sites, apps and portals</th><th scope="col" class="us">Samadhyan</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Filing</th><td>Forms, visits and typing</td><td class="us">Photos, text or voice</td></tr>
+            <tr><th scope="row">Proof</th><td>Often missing or manual</td><td class="us">GPS, date and time added automatically</td></tr>
+            <tr><th scope="row">Delivery</th><td>Mail written and sent by hand</td><td class="us">AI writes it, Gmail sends it</td></tr>
+            <tr><th scope="row">Awareness</th><td>Events and news in separate places</td><td class="us">Rallies, protests, events and #news in one place</td></tr>
+            <tr><th scope="row">Help</th><td>Helplines and static FAQs</td><td class="us">AI bot answers instantly</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT WITH -->
+  <section class="view built" id="v-built" data-title="Built with" aria-label="How we built it">
+    <pre class="code" id="code" aria-hidden="true"></pre>
+    <div class="tools">
+      <div class="tool"><span class="ring" data-icon="SiClaude"></span><b>Claude</b></div>
+      <span class="plus" aria-hidden="true">+</span>
+      <div class="tool"><span class="ring" data-icon="SiGithub"></span><b>GitHub repository</b></div>
+      <span class="plus" aria-hidden="true">+</span>
+      <div class="tool"><span class="ring" data-icon="VscVscode"></span><b>Visual Studio Code</b></div>
+    </div>
+  </section>
+
+  <!-- FUTURE -->
+  <section class="view" id="v-future" data-title="Future" aria-label="Future scope">
+    <div class="wrap">
+      <h2>Future scope</h2>
+      <p class="hint">Select a milestone for details.</p>
+      <div class="line" id="line" role="tablist" aria-label="Milestones"></div>
+      <p class="note" id="futNote" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- THANKS -->
+  <section class="view thanks" id="v-thanks" data-title="Thanks" aria-label="Thank you">
+    <div class="wrap center">
+      <span class="disc"><img src="logo.png" alt="" width="84" height="92"></span>
+      <h2>Thank You</h2>
+      <i class="rule"></i>
+      <p class="tag">Safety, Voice, Solutions</p>
+    </div>
+  </section>
+</main>
+
+<footer class="bar">
+  <button class="nav-btn" id="prevBtn" type="button" aria-label="Previous section">&#8592; Back</button>
+  <div class="dots" id="dots" role="tablist" aria-label="Progress"></div>
+  <button class="nav-btn" id="nextBtn" type="button" aria-label="Next section">Next &#8594;</button>
+</footer>
+
+<!-- mobile menu -->
+<div class="sheet" id="sheet" hidden><nav id="sheetNav" aria-label="Menu"></nav></div>
+
+<!-- login / register -->
+<div class="veil" id="veil" hidden></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+  <button class="x" id="mClose" type="button" aria-label="Close">&times;</button>
+  <h2 id="mTitle">Login</h2>
+  <div class="seg"><button type="button" class="on" data-mode="login">Login</button><button type="button" data-mode="register">Register</button></div>
+  <form id="authForm" novalidate>
+    <div id="nameRow" hidden><label for="aName">Name</label><input id="aName" type="text" autocomplete="name"></div>
+    <label for="aEmail">Email</label><input id="aEmail" type="email" autocomplete="email">
+    <label for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password">
+    <p class="err" id="aErr" role="alert"></p>
+    <button class="btn" id="aSubmit" type="submit">Login</button>
+    <p class="small">Prototype: no account is created and nothing is stored.</p>
+  </form>
+</div>
+
+<!-- AI bot -->
+<button class="fab" id="botFab" type="button" aria-expanded="false" aria-controls="bot" aria-label="Open AI bot"><span data-icon="FaRobot"></span></button>
+<section class="bot" id="bot" hidden aria-label="AI bot">
+  <header><b>Samadhyan AI bot</b><button type="button" id="botX" aria-label="Close">&times;</button></header>
+  <div class="log" id="log" aria-live="polite"></div>
+  <div class="chips" id="chips"></div>
+  <form class="ask" id="ask"><input id="askIn" type="text" placeholder="Ask a question" aria-label="Ask a question" autocomplete="off"><button class="btn btn-small" type="submit">Ask</button></form>
+</section>
+
+<script src="action.js"></script>
+</body>
+</html>
